@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85E13A85-2E55-4BDC-B524-D2D1187CE4CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpcUaHelper</RootNamespace>
+    <AssemblyName>OpcUaHelper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\OpcUaHelper.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Opc.Ua.Client, Version=1.0.250.1, Culture=neutral, PublicKeyToken=22186a540fc0b044, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Public\Opc.Ua.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.ClientControls, Version=1.3.342.0, Culture=neutral, PublicKeyToken=78aea80f6827b5ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Public\Opc.Ua.ClientControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Configuration, Version=1.3.342.0, Culture=neutral, PublicKeyToken=78aea80f6827b5ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Public\Opc.Ua.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Core, Version=1.0.250.1, Culture=neutral, PublicKeyToken=22186a540fc0b044, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Public\Opc.Ua.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="controls\TreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormBrowseServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormBrowseServer.Designer.cs">
+      <DependentUpon>FormBrowseServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormInputNamePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opc Ua Client\FormInputNamePassword.Designer.cs">
+      <DependentUpon>FormInputNamePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Opc Ua Client\OpcUaClient.cs" />
+    <Compile Include="Opc Ua Client\OpcUaEventArgs.cs" />
+    <Compile Include="Opc Ua Client\OpcUaFormUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+    <None Include="img\Activity_16xLG.png" />
+    <None Include="img\brackets_Square_16xMD.png" />
+    <None Include="img\Class_489.png" />
+    <None Include="img\ClassIcon.png" />
+    <None Include="img\Cloud_16xLG.png" />
+    <None Include="img\Copy_6524.png" />
+    <None Include="img\Delegate_8339.png" />
+    <None Include="img\docview_xaml_on_16x16.png" />
+    <None Include="img\Enum_582.png" />
+    <None Include="img\Event_594.png" />
+    <None Include="img\Event_594_exp.png" />
+    <None Include="img\glasses_16xLG.png" />
+    <None Include="img\grid_Data_16xLG.png" />
+    <None Include="img\lightningBolt_16xLG.png" />
+    <None Include="img\ListView_687.png" />
+    <None Include="img\Method_636.png" />
+    <None Include="img\Module_648.png" />
+    <None Include="img\Structure_507.png" />
+    <None Include="img\Table_748.png" />
+    <None Include="img\Tag_7213.png" />
+    <None Include="img\usbcontroller.png" />
+    <None Include="img\VirtualMachine.png" />
+    <None Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Opc Ua Client\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opc Ua Client\FormBrowseServer.resx">
+      <DependentUpon>FormBrowseServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opc Ua Client\FormInputNamePassword.resx">
+      <DependentUpon>FormInputNamePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
