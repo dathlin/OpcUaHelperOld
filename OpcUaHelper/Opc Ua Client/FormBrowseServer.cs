@@ -1,4 +1,5 @@
 ﻿using Opc.Ua;
+using Opc.Ua.Client;
 using Opc.Ua.Client.Controls;
 using System;
 using System.Collections.Generic;
@@ -1195,6 +1196,55 @@ namespace OpcUaHelper
         #endregion
 
 
-        
+        #region 自定义订阅添加
+
+        /// <summary>
+        /// 创建自己的数据订阅器
+        /// </summary>
+        public void CreateUserSubscription()
+        {
+
+            // 创建一个数据订阅任务，ps：一个订阅任务可以订阅多个子项
+            var sub = new Subscription
+            {
+                PublishingInterval = 0,
+                PublishingEnabled = true,
+                LifetimeCount = 0,
+                KeepAliveCount = 0,
+                DisplayName = "订阅显示的名称",
+                Priority = byte.MaxValue
+            };
+
+
+            // 在这里添加数据订阅的节点信息
+            var item = new MonitoredItem
+            {
+                StartNodeId = "[节点名称]",
+                AttributeId = Attributes.Value,
+                DisplayName = "[节点的显示名称]",
+                SamplingInterval = 100
+            };
+            sub.AddItem(item);
+
+
+            // 添加第二项，第三项，此处省略
+
+            m_OpcUaClient.Session.AddSubscription(sub);       // 添加到总客户端,m_OpcUaClient为客户端对象
+            sub.Create();
+            sub.ApplyChanges();
+
+
+            // 添加子项处理逻辑
+            item.Notification += (monitoredItem, args) =>
+            {
+                var notification = (MonitoredItemNotification)args.NotificationValue;
+                if (notification == null) return;//如果为空就退出
+                var t = notification.Value.WrappedValue.Value;
+                
+                // 到这里我们就获取到了值，这是是子项一的监视值
+            };
+        }
+
+        #endregion
     }
 }
