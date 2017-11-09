@@ -16,5 +16,13 @@ namespace OpcUaTest
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (OpcUaHelper.FormBrowseServer fbs = new OpcUaHelper.FormBrowseServer())
+            {
+                fbs.ShowDialog();
+            }
+        }
     }
 }

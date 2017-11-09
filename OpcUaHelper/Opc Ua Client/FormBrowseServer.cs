@@ -625,19 +625,27 @@ namespace OpcUaHelper
             else
             {
                 // 子节点没有数据的情况
-                DateTime dateTimeStart = DateTime.Now;
-                DataValue dataValue = m_OpcUaClient.ReadNode(sourceId);
+                try
+                {
+                    DateTime dateTimeStart = DateTime.Now;
+                    DataValue dataValue = m_OpcUaClient.ReadNode(sourceId);
 
-                if (dataValue.WrappedValue.TypeInfo?.ValueRank == ValueRanks.OneDimension)
-                {
-                    // 数组显示
-                    AddDataGridViewArrayRow(sourceId, out index);
+                    if (dataValue.WrappedValue.TypeInfo?.ValueRank == ValueRanks.OneDimension)
+                    {
+                        // 数组显示
+                        AddDataGridViewArrayRow(sourceId, out index);
+                    }
+                    else
+                    {
+                        // 显示单个数本身
+                        label_time_spend.Text = (int)(DateTime.Now - dateTimeStart).TotalMilliseconds + " ms";
+                        AddDataGridViewNewRow(ReadOneNodeFiveAttributes(new List<NodeId>() { sourceId }), 0, index++, sourceId);
+                    }
                 }
-                else
+                catch (Exception exception)
                 {
-                    // 显示单个数本身
-                    label_time_spend.Text = (int)(DateTime.Now - dateTimeStart).TotalMilliseconds + " ms";
-                    AddDataGridViewNewRow(ReadOneNodeFiveAttributes(new List<NodeId>() { sourceId }), 0, index++,sourceId);
+                    ClientUtils.HandleException(Text, exception);
+                    return;
                 }
             }
 
@@ -812,7 +820,7 @@ namespace OpcUaHelper
                 {
                     Invoke(action);
                 }
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(500);
             }
         }
 
