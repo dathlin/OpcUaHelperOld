@@ -1203,6 +1203,43 @@ namespace OpcUaHelper
 
         #endregion
 
+        //private void button6_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        Opc.Ua.ReferenceDescription[] reference = opcUaClient.BrowseNodeReference("ns=2;s=Machines/Machine B");
+
+        //        foreach (var refer in reference)
+        //        {
+        //            // 如果不是值节点，就不要了，否则下面读取了也是没有意义的
+        //            if (refer.NodeClass != NodeClass.Variable)
+        //            {
+        //                continue;
+        //            }
+                    
+
+        //            // 分别读取数据
+        //            Opc.Ua.DataValue dataValue = opcUaClient.ReadNode((Opc.Ua.NodeId)refer.NodeId);
+        //            if (dataValue.WrappedValue.TypeInfo.BuiltInType == Opc.Ua.BuiltInType.Boolean)
+        //            {
+        //                // 读取到的是bool数据，在这里做处理
+        //                bool value = (bool)dataValue.WrappedValue.Value;
+        //            }
+        //            else if (dataValue.WrappedValue.TypeInfo.BuiltInType == Opc.Ua.BuiltInType.String)
+        //            {
+        //                // 读取到的是string字符串，在这里做处理
+        //                string value = dataValue.WrappedValue.Value.ToString();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // 使用了opc ua的错误处理机制来处理错误，网络不通或是读取拒绝
+        //        Opc.Ua.Client.Controls.ClientUtils.HandleException(Text, ex);
+        //    }
+        //}
+
+
 
         #region 自定义订阅添加
 
