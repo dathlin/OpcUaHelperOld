@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Opc.Ua.Core, Version=1.3.342.0, Culture=neutral, PublicKeyToken=78aea80f6827b5ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\OpcUaHelper\bin\Debug\Opc.Ua.Core.dll</HintPath>
+    </Reference>
     <Reference Include="OpcUaHelper">
       <HintPath>..\OpcUaHelper\bin\Debug\OpcUaHelper.dll</HintPath>
     </Reference>
