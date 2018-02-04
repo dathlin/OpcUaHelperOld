@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -114,17 +115,35 @@ namespace OpcUaTest
             // 批量写入的代码
             string[] nodes = new string[]
             {
-                "ns=2;s=Robots/RobotA/RobotMode",
-                "ns=2;s=Robots/RobotA/UserFloat"
+                "ns=2;s=Machines/Machine A/Name",
+                "ns=2;s=Machines/Machine A/IsFault",
+                "ns=2;s=Machines/Machine A/AlarmTime",
+                "ns=2;s=Machines/Machine A/TestValueInt"
             };
             object[] data = new object[]
             {
-                4,
-                new float[]{5,3,1,5,7,8}
+                "测试文本1234",
+                false,
+                DateTime.Now,
+                13456
             };
 
             // 都成功返回True，否则返回False
             bool result = opcUaClient.WriteNodes(nodes, data);
+            ;
+        }
+
+        private void button6_Click( object sender, EventArgs e )
+        {
+            // 获取本机已经注册的服务器地址
+            string endpointUrl = new Opc.Ua.Client.Controls.DiscoverServerDlg( ).ShowDialog( opcUaClient.AppConfig, null );
+            // 获取其他服务器注册的地址，注意，需要该IP的安全策略配置正确
+            // string endpointUrl = new Opc.Ua.Client.Controls.DiscoverServerDlg( ).ShowDialog( opcUaClient.AppConfig, "192.168.0.100" );
+
+            if (!string.IsNullOrEmpty( endpointUrl ))
+            {
+                // 获取到的需要操作的服务器地址
+            }
         }
     }
 }

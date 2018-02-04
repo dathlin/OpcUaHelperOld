@@ -590,6 +590,7 @@ namespace OpcUaHelper
             }
             catch(Exception exception)
             {
+                StopRefresh( );
                 ClientUtils.HandleException(Text, exception);
                 return;
             }
@@ -644,6 +645,7 @@ namespace OpcUaHelper
                 }
                 catch (Exception exception)
                 {
+                    StopRefresh( );
                     ClientUtils.HandleException(Text, exception);
                     return;
                 }
@@ -829,20 +831,27 @@ namespace OpcUaHelper
             if (IsHandleCreated)
             {
                 // 刷新显示
-                if (!string.IsNullOrEmpty(textBox_nodeId.Text))
+                if (!string.IsNullOrEmpty( textBox_nodeId.Text ))
                 {
-                    try
-                    {
-                        dataGridView1.SuspendLayout();
-                        ShowMember(new NodeId(textBox_nodeId.Text));
-                        dataGridView1.ResumeLayout();
-                    }
-                    catch(Exception ex)
-                    {
-                        button2.PerformClick();
+                    dataGridView1.SuspendLayout( );
+                    ShowMember( new NodeId( textBox_nodeId.Text ) );
+                    dataGridView1.ResumeLayout( );
+                }
+            }
+        }
 
-                        ClientUtils.HandleException(Text, ex);
-                    }
+        private void StopRefresh()
+        {
+            if(m_AutoUpdate)
+            {
+                m_AutoUpdate = !m_AutoUpdate;
+                if (m_AutoUpdate)
+                {
+                    button2.BackColor = Color.LimeGreen;
+                }
+                else
+                {
+                    button2.BackColor = SystemColors.Control;
                 }
             }
         }
