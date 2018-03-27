@@ -34,8 +34,8 @@ namespace OpcUaTest
         private void Form1_Load(object sender, EventArgs e)
         {
             opcUaClient = new OpcUaHelper.OpcUaClient();
-            opcUaClient.ConnectServer("http://117.48.203.204:62547/DataAccessServer");
-
+            // opcUaClient.ConnectServer("http://117.48.203.204:62547/DataAccessServer");
+            opcUaClient.ConnectServer( "opc.tcp://127.0.0.1:34561/DataTransferServer" );
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -61,15 +61,15 @@ namespace OpcUaTest
             // 2  说明是二维数组，如果类型BuiltInType是Int32，那么实际是int[,]
             if (value.WrappedValue.TypeInfo.BuiltInType == Opc.Ua.BuiltInType.Int32)
             {
-                if (value.WrappedValue.TypeInfo.ValueRank == -1)
+                if (value.WrappedValue.TypeInfo.ValueRank == Opc.Ua.ValueRanks.Scalar)
                 {
                     int temp = (int)value.WrappedValue.Value;               // 最终值
                 }
-                else if (value.WrappedValue.TypeInfo.ValueRank == 1)
+                else if (value.WrappedValue.TypeInfo.ValueRank == Opc.Ua.ValueRanks.OneDimension)
                 {
                     int[] temp = (int[])value.WrappedValue.Value;           // 最终值
                 }
-                else if (value.WrappedValue.TypeInfo.ValueRank == 2)
+                else if (value.WrappedValue.TypeInfo.ValueRank == Opc.Ua.ValueRanks.TwoDimensions)
                 {
                     int[,] temp = (int[,])value.WrappedValue.Value;         // 最终值
                 }
@@ -144,6 +144,12 @@ namespace OpcUaTest
             {
                 // 获取到的需要操作的服务器地址
             }
+        }
+
+        private void button7_Click( object sender, EventArgs e )
+        {
+            byte[] buffer = opcUaClient.ReadNode<byte[]>( "ns=2;s=Modbus/Device2" );
+            textBox1.AppendText( DateTime.Now.ToString( "[yyyy-MM-dd HH:mm:ss.fff] ") + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( buffer, ' ' ) + Environment.NewLine );
         }
     }
 }

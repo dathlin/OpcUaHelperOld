@@ -812,8 +812,7 @@ namespace OpcUaHelper
         public void MonitorValue<T>(string tag, Action<T, Action> callback)
         {
             var node = new NodeId(tag);
-
-
+            
             var sub = new Subscription
             {
                 PublishingInterval = 0,
@@ -824,8 +823,7 @@ namespace OpcUaHelper
                 Priority = byte.MaxValue
             };
 
-
-
+            
             var item = new MonitoredItem
             {
                 StartNodeId = node,
@@ -837,9 +835,7 @@ namespace OpcUaHelper
             m_session.AddSubscription(sub);
             sub.Create();
             sub.ApplyChanges();
-
-
-
+            
             item.Notification += (monitoredItem, args) =>
             {
                 var notification = (MonitoredItemNotification)args.NotificationValue;

@@ -16,7 +16,8 @@ namespace OpcUaTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OpcUaHelper.FormBrowseServer());
+            //Application.Run(new OpcUaHelper.FormBrowseServer());
+            Application.Run( new Form1( ) );
         }
     }
 }
